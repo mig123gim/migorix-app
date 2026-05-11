@@ -1,0 +1,120 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#sidebar-wrapper {
+    width: 220px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -220px;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+}
+
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.stat-card .stat-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.kanban-board {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.kanban-column {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 280px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+}
+
+.kanban-column h5 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.kanban-card {
+    background: #f1f3f5;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    cursor: grab;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+.kanban-card .title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.kanban-card .company {
+    font-size: 0.85rem;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+.kanban-card .amount {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.kanban-card .date {
+    font-size: 0.8rem;
+    color: #868e96;
+}
+
+.kanban-card .status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.status-new {
+    background-color: #e7f5ff;
+    color: #1c7ed6;
+}
+
+.status-in_progress {
+    background-color: #fff4e6;
+    color: #f08c00;
+}
+
+.status-negotiation {
+    background-color: #f3f0ff;
+    color: #7048e8;
+}
+
+.status-done {
+    background-color: #d3f9d8;
+    color: #2b8a3e;
+}

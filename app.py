@@ -38,6 +38,48 @@ with app.app_context():
 def index():
     if 'user_id' not in session:
         return redirect(url_for('login'))
+@app.route('/clients')
+def clients():
+    clients = Client.query.all()
+    return render_template('index.html', clients=clients)
+
+from datetime import datetime
+from flask import render_template
+
+@app.route('/workspace')
+def workspace():
+    # Demo data for dashboard stats
+    stats = {
+        'clients': 128,
+        'deals': 45,
+        'tasks': 23,
+        'revenue': '1 250 000'
+    }
+
+    # Demo data for Kanban columns
+    deals_new = [
+        {'title': 'Поставка оборудования', 'company': 'ООО "МеталлПром"', 'amount': 250000, 'date_created': datetime(2025, 5, 12)},
+        {'title': 'Запчасти для станков', 'company': 'ИП Иванов И.И.', 'amount': 75000, 'date_created': datetime(2025, 5, 13)},
+        {'title': 'Сырьё для производства', 'company': 'ООО "Сырьё+"', 'amount': 120000, 'date_created': datetime(2025, 5, 13)}
+    ]
+    deals_in_progress = [
+        {'title': 'Поставка металла', 'company': 'ООО "МеталлПром"', 'amount': 300000, 'date_created': datetime(2025, 5, 10)},
+        {'title': 'Комплектующие', 'company': 'ИП Петров П.П.', 'amount': 45000, 'date_created': datetime(2025, 5, 11)},
+        {'title': 'Электроника', 'company': 'ООО "РадиоТех"', 'amount': 160000, 'date_created': datetime(2025, 5, 12)}
+    ]
+    deals_negotiation = [
+        {'title': 'Долгосрочный контракт', 'company': 'ООО "СтройМатериалы"', 'amount': 500000, 'date_created': datetime(2025, 5, 15)},
+        {'title': 'Поставка инструментов', 'company': 'ИП Смирнов А.А.', 'amount': 80000, 'date_created': datetime(2025, 5, 14)},
+        {'title': 'Химическое сырьё', 'company': 'ООО "ХимПром"', 'amount': 220000, 'date_created': datetime(2025, 5, 16)}
+    ]
+    deals_done = [
+        {'title': 'Бумага А4', 'company': 'ООО "Бумажный Мир"', 'amount': 25000, 'date_created': datetime(2025, 5, 9)},
+        {'title': 'Краска и лак', 'company': 'ИП Цветков В.В.', 'amount': 60000, 'date_created': datetime(2025, 5, 8)},
+        {'title': 'Крепёжные изделия', 'company': 'ООО "Крепёж"', 'amount': 35000, 'date_created': datetime(2025, 5, 7)}
+    ]
+
+    return render_template('kanban.html', stats=stats, deals_new=deals_new, deals_in_progress=deals_in_progress, deals_negotiation=deals_negotiation, deals_done=deals_done)
+
     clients = Client.query.all()
     return render_template('index.html', clients=clients)
 
@@ -50,7 +92,7 @@ def login():
         if user and user.check_password(password):
             session['user_id'] = user.id
             flash('Вы успешно вошли в систему', 'success')
-            return redirect(url_for('index'))
+            return redirect(url_for('workspace'))
         else:
             flash('Неверное имя пользователя или пароль', 'danger')
     return render_template('login.html')
@@ -97,8 +139,23 @@ def delete_client(client_id):
     client = Client.query.get_or_404(client_id)
     db.session.delete(client)
     db.session.commit()
-    flash('Клиент удален', 'success')
-    return redirect(url_for('index'))
+
+# Скрипт для создания пользователя admin с паролем admin123
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == 'create_admin':
+        with app.app_context():
+            user = User.query.filter_by(username='admin').first()
+            if not user:
+                user = User(username='admin')
+            user.set_password('admin123')
+            db.session.add(user)
+            db.session.commit()
+            print('Пользователь admin создан или обновлен с паролем admin123')
+        sys.exit(0)
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
