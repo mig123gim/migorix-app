@@ -4,7 +4,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+import os
+
+os.makedirs(app.instance_path, exist_ok=True)
+db_path = os.path.join(app.instance_path, "database.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + db_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(24)
 
@@ -27,9 +31,8 @@ class Client(db.Model):
     email = db.Column(db.String(100), nullable=True)
     phone = db.Column(db.String(20), nullable=True)
 
-@app.before_first_request
-    def create_tables():
-        db.create_all()
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
