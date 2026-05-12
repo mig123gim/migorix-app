@@ -5,109 +5,71 @@
 {% block content %}
 <h1>Рабочий лист</h1>
 
-<div class="row mb-4">
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex align-items-center mb-2">
-                <i class="bi bi-people-fill fs-3 me-2 text-primary"></i>
-                <div>
-                    <h3>128</h3>
-                    <div class="stat-label">Клиенты</div>
-                </div>
+<div class="d-flex flex-wrap justify-content-between mb-4 gap-3">
+    <div class="stat-card flex-fill" style="min-width: 180px; max-width: 22%;">
+        <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-people-fill fs-3 me-2 text-primary"></i>
+            <div>
+                <h3>{{ stats.clients }}</h3>
+                <div class="stat-label">Клиенты</div>
             </div>
-            <div class="text-success">+12 на этой неделе</div>
         </div>
+        <div class="text-success">+12 на этой неделе</div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex align-items-center mb-2">
-                <i class="bi bi-currency-dollar fs-3 me-2 text-success"></i>
-                <div>
-                    <h3>45</h3>
-                    <div class="stat-label">Сделки</div>
-                </div>
+    <div class="stat-card flex-fill" style="min-width: 180px; max-width: 22%;">
+        <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-currency-dollar fs-3 me-2 text-success"></i>
+            <div>
+                <h3>{{ stats.deals }}</h3>
+                <div class="stat-label">Сделки</div>
             </div>
-            <div class="text-success">+8 на этой неделе</div>
         </div>
+        <div class="text-success">+8 на этой неделе</div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex align-items-center mb-2">
-                <i class="bi bi-list-task fs-3 me-2 text-warning"></i>
-                <div>
-                    <h3>23</h3>
-                    <div class="stat-label">Задачи</div>
-                </div>
+    <div class="stat-card flex-fill" style="min-width: 180px; max-width: 22%;">
+        <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-list-task fs-3 me-2 text-warning"></i>
+            <div>
+                <h3>{{ stats.tasks }}</h3>
+                <div class="stat-label">Задачи</div>
             </div>
-            <div class="text-success">+5 на этой неделе</div>
         </div>
+        <div class="text-success">+5 на этой неделе</div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex align-items-center mb-2">
-                <i class="bi bi-graph-up fs-3 me-2 text-purple"></i>
-                <div>
-                    <h3>1 250 000 ₽</h3>
-                    <div class="stat-label">Выручка</div>
-                </div>
+    <div class="stat-card flex-fill" style="min-width: 180px; max-width: 22%;">
+        <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-graph-up fs-3 me-2 text-purple"></i>
+            <div>
+                <h3>{{ stats.revenue }} ₽</h3>
+                <div class="stat-label">Выручка</div>
             </div>
-            <div class="text-success">+18% за месяц</div>
         </div>
+        <div class="text-success">+18% за месяц</div>
     </div>
 </div>
 
-<div class="kanban-board">
-    <div class="kanban-column">
-        <h5>Новые <span class="badge bg-primary">5</span></h5>
-        {% for deal in deals_new %}
-        <div class="kanban-card">
+<div class="kanban-board d-flex flex-nowrap overflow-auto gap-3">
+    {% for status, deals in deals_by_status.items() %}
+    <div class="kanban-column" id="{{ status }}">
+        <h5>{{ status.replace('_', ' ').title() }} <span class="badge bg-primary">{{ deals|length }}</span></h5>
+        {% for deal in deals %}
+        <div class="kanban-card" data-id="{{ deal.id }}">
             <div class="title">{{ deal.title }}</div>
             <div class="company">{{ deal.company }}</div>
             <div class="amount">{{ deal.amount }} ₽</div>
             <div class="date">{{ deal.date_created.strftime('%d %b %Y') }}</div>
-            <div class="status status-new">Новый</div>
+            <div class="status status-{{ status }}">{{ status.replace('_', ' ').title() }}</div>
+            <div class="actions">
+                <a href="{{ url_for('edit_deal', deal_id=deal.id) }}" class="btn btn-sm btn-outline-primary">Редактировать</a>
+                <form action="{{ url_for('delete_deal', deal_id=deal.id) }}" method="post" style="display:inline-block;">
+                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Удалить сделку?');">Удалить</button>
+                </form>
+            </div>
         </div>
         {% endfor %}
-        <a href="#" class="text-primary">+ Добавить сделку</a>
+        <a href="{{ url_for('add_deal') }}" class="btn btn-sm btn-outline-primary">+ Добавить сделку</a>
     </div>
-    <div class="kanban-column">
-        <h5>В работе <span class="badge bg-warning">4</span></h5>
-        {% for deal in deals_in_progress %}
-        <div class="kanban-card">
-            <div class="title">{{ deal.title }}</div>
-            <div class="company">{{ deal.company }}</div>
-            <div class="amount">{{ deal.amount }} ₽</div>
-            <div class="date">{{ deal.date_created.strftime('%d %b %Y') }}</div>
-            <div class="status status-in_progress">В работе</div>
-        </div>
-        {% endfor %}
-        <a href="#" class="text-warning">+ Добавить сделку</a>
-    </div>
-    <div class="kanban-column">
-        <h5>Переговоры <span class="badge bg-purple">3</span></h5>
-        {% for deal in deals_negotiation %}
-        <div class="kanban-card">
-            <div class="title">{{ deal.title }}</div>
-            <div class="company">{{ deal.company }}</div>
-            <div class="amount">{{ deal.amount }} ₽</div>
-            <div class="date">{{ deal.date_created.strftime('%d %b %Y') }}</div>
-            <div class="status status-negotiation">Переговоры</div>
-        </div>
-        {% endfor %}
-        <a href="#" class="text-purple">+ Добавить сделку</a>
-    </div>
-    <div class="kanban-column">
-        <h5>Завершено <span class="badge bg-success">6</span></h5>
-        {% for deal in deals_done %}
-        <div class="kanban-card">
-            <div class="title">{{ deal.title }}</div>
-            <div class="company">{{ deal.company }}</div>
-            <div class="amount">{{ deal.amount }} ₽</div>
-            <div class="date">{{ deal.date_created.strftime('%d %b %Y') }}</div>
-            <div class="status status-done">Завершено</div>
-        </div>
-        {% endfor %}
-        <a href="#" class="text-success">+ Добавить сделку</a>
-    </div>
+    {% endfor %}
 </div>
+
 {% endblock %}

@@ -18,6 +18,17 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+class Deal(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(150), nullable=False)
+    company = db.Column(db.String(150), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    date_created = db.Column(db.Date, nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+
+with app.app_context():
+    db.create_all()
+
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -48,40 +59,21 @@ from flask import render_template
 
 @app.route('/workspace')
 def workspace():
-    # Demo data for dashboard stats
-    stats = {
-        'clients': 128,
-        'deals': 45,
-        'tasks': 23,
-        'revenue': '1 250 000'
+    stats = {}
+    stats['clients'] = Client.query.count()
+    stats['deals'] = Deal.query.count()
+    stats['tasks'] = 23  # Пока заглушка
+    stats['revenue'] = db.session.query(db.func.sum(Deal.amount)).scalar() or 0
+
+    deals_by_status = {
+        'new': Deal.query.filter_by(status='new').all(),
+        'in_progress': Deal.query.filter_by(status='in_progress').all(),
+        'negotiation': Deal.query.filter_by(status='negotiation').all(),
+        'done': Deal.query.filter_by(status='done').all()
     }
 
-    # Demo data for Kanban columns
-    deals_new = [
-        {'title': 'Поставка оборудования', 'company': 'ООО "МеталлПром"', 'amount': 250000, 'date_created': datetime(2025, 5, 12)},
-        {'title': 'Запчасти для станков', 'company': 'ИП Иванов И.И.', 'amount': 75000, 'date_created': datetime(2025, 5, 13)},
-        {'title': 'Сырьё для производства', 'company': 'ООО "Сырьё+"', 'amount': 120000, 'date_created': datetime(2025, 5, 13)}
-    ]
-    deals_in_progress = [
-        {'title': 'Поставка металла', 'company': 'ООО "МеталлПром"', 'amount': 300000, 'date_created': datetime(2025, 5, 10)},
-        {'title': 'Комплектующие', 'company': 'ИП Петров П.П.', 'amount': 45000, 'date_created': datetime(2025, 5, 11)},
-        {'title': 'Электроника', 'company': 'ООО "РадиоТех"', 'amount': 160000, 'date_created': datetime(2025, 5, 12)}
-    ]
-    deals_negotiation = [
-        {'title': 'Долгосрочный контракт', 'company': 'ООО "СтройМатериалы"', 'amount': 500000, 'date_created': datetime(2025, 5, 15)},
-        {'title': 'Поставка инструментов', 'company': 'ИП Смирнов А.А.', 'amount': 80000, 'date_created': datetime(2025, 5, 14)},
-        {'title': 'Химическое сырьё', 'company': 'ООО "ХимПром"', 'amount': 220000, 'date_created': datetime(2025, 5, 16)}
-    ]
-    deals_done = [
-        {'title': 'Бумага А4', 'company': 'ООО "Бумажный Мир"', 'amount': 25000, 'date_created': datetime(2025, 5, 9)},
-        {'title': 'Краска и лак', 'company': 'ИП Цветков В.В.', 'amount': 60000, 'date_created': datetime(2025, 5, 8)},
-        {'title': 'Крепёжные изделия', 'company': 'ООО "Крепёж"', 'amount': 35000, 'date_created': datetime(2025, 5, 7)}
-    ]
+    return render_template('kanban.html', stats=stats, deals_by_status=deals_by_status)
 
-    return render_template('kanban.html', stats=stats, deals_new=deals_new, deals_in_progress=deals_in_progress, deals_negotiation=deals_negotiation, deals_done=deals_done)
-
-    clients = Client.query.all()
-    return render_template('index.html', clients=clients)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -96,6 +88,53 @@ def login():
         else:
             flash('Неверное имя пользователя или пароль', 'danger')
     return render_template('login.html')
+
+
+@app.route('/deals/add', methods=['GET', 'POST'])
+def add_deal():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+        title = request.form['title']
+        company = request.form['company']
+        amount = request.form['amount']
+        date_created = request.form['date_created']
+        status = request.form['status']
+        deal = Deal(title=title, company=company, amount=amount, date_created=date_created, status=status)
+        db.session.add(deal)
+        db.session.commit()
+        flash('Сделка добавлена', 'success')
+        return redirect(url_for('workspace'))
+    return render_template('add_deal.html')
+
+
+@app.route('/deals/<int:deal_id>/edit', methods=['GET', 'POST'])
+def edit_deal(deal_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    deal = Deal.query.get_or_404(deal_id)
+    if request.method == 'POST':
+        deal.title = request.form['title']
+        deal.company = request.form['company']
+        deal.amount = request.form['amount']
+        deal.date_created = request.form['date_created']
+        deal.status = request.form['status']
+        db.session.commit()
+        flash('Сделка обновлена', 'success')
+        return redirect(url_for('workspace'))
+    return render_template('edit_deal.html', deal=deal)
+
+
+@app.route('/deals/<int:deal_id>/delete', methods=['POST'])
+def delete_deal(deal_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    deal = Deal.query.get_or_404(deal_id)
+    db.session.delete(deal)
+    db.session.commit()
+    flash('Сделка удалена', 'success')
+    return redirect(url_for('workspace'))
+
 
 @app.route('/logout')
 def logout():
