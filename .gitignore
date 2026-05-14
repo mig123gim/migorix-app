@@ -1,4 +1,12 @@
 __pycache__/
 *.pyc
-instance/database.db
 .env
+backups/
+
+templates/index_before_*.html
+
+static/css/onboarding/*before*.css
+static/css/map/*before*.css
+
+static/js/onboarding/*before*.js
+static/js/map/*before*.js

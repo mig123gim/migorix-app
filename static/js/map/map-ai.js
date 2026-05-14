@@ -1,0 +1,3 @@
+window.MIGoRIXMapAI = {
+  ready: true
+};

@@ -1,0 +1,105 @@
+#screen-code {
+  background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.35)), url("/static/img/sms-city.png");
+}
+
+#screen-code .sms-content {
+  padding-top: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#screen-code h2 {
+  font-size: 28px;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+#screen-code .sms-info {
+  font-size: 16px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.82);
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+#screen-code .sms-info span {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+#screen-code .code-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 8px !important;
+  margin-bottom: 20px !important;
+}
+
+#screen-code .code-boxes span {
+  width: 39px !important;
+  height: 50px !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 7px !important;
+  background: rgba(0,0,0,.28) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none !important;
+  font-size: 26px !important;
+  font-weight: 500 !important;
+  color: #ffffff;
+}
+
+#screen-code .code-boxes span:last-child {
+  border-color: rgba(57,217,138,.55) !important;
+  box-shadow: 0 0 6px rgba(57,217,138,.10) !important;
+}
+
+#screen-code .sms-auto {
+  color: rgba(255,255,255,.52);
+  font-size: 14px;
+  margin-bottom: 34px !important;
+  text-align: center;
+}
+
+#screen-code .sms-timer {
+  --progress: 360deg;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  background:
+    radial-gradient(circle at center, rgba(2,8,12,.96) 58%, transparent 60%),
+    conic-gradient(#39d98a 0 var(--progress), rgba(255,255,255,.16) var(--progress) 360deg) !important;
+}
+
+#screen-code .resend-code-btn {
+  width: 100% !important;
+  height: 56px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: linear-gradient(135deg, #41e38f, #24b96d) !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin-top: 110px !important;
+  text-align: center !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+}
+
+#screen-code .resend-code-btn:disabled {
+  opacity: .48 !important;
+  cursor: default !important;
+}
+
+#screen-code .resend-code-btn.ready {
+  opacity: 1 !important;
+  color: #ffffff !important;
+}

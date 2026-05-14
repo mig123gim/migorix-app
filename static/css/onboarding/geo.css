@@ -1,0 +1,44 @@
+#screen-location {
+  background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.35)), url("/static/img/geo-map.png");
+}
+
+#screen-location h2 {
+  margin-bottom: 10px !important;
+}
+
+#screen-location p {
+  margin-bottom: 10px !important;
+  max-width: 310px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  line-height: 1.45 !important;
+}
+
+#screen-location .location-visual {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 1px solid rgba(57,217,138,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #39d98a;
+  font-size: 72px;
+  margin-top: 0 !important;
+  margin-bottom: 135px !important;
+  box-shadow: 0 0 80px rgba(57,217,138,.25);
+  transform: scale(.88) !important;
+  transform-origin: center top !important;
+}
+
+#screen-location button {
+  width: 84% !important;
+  margin-bottom: 14px !important;
+  transform: translateY(18px) !important;
+}
+
+#screen-location button.secondary {
+  margin-top: 0 !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: rgba(255,255,255,.88) !important;
+}

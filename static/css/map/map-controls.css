@@ -1,0 +1,34 @@
+#screen-map .map-right-controls {
+  position: fixed;
+  right: max(15px, env(safe-area-inset-right));
+  bottom: calc(146px + env(safe-area-inset-bottom));
+  z-index: 24;
+  display: grid;
+  gap: 12px;
+}
+
+#screen-map .map-geolocation-btn,
+#screen-map .map-layers-btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  border-radius: 50%;
+  background: rgba(3, 11, 14, 0.72);
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px);
+}
+
+#screen-map .map-geolocation-btn.is-active,
+#screen-map .map-layers-btn.is-active {
+  border-color: rgba(34, 197, 94, 0.56);
+  color: #22c55e;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.3),
+    0 0 24px rgba(34, 197, 94, 0.14);
+}

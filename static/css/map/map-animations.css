@@ -1,0 +1,106 @@
+#screen-map .map-topbar,
+#screen-map .map-weather-bar,
+#screen-map .map-right-controls,
+#screen-map .map-bottom-panel {
+  transition:
+    transform 0.28s ease,
+    opacity 0.28s ease,
+    height 0.28s ease,
+    background-color 0.28s ease;
+}
+
+#screen-map button {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+#screen-map button:active {
+  transform: scale(0.96);
+}
+
+#screen-map .map-marker {
+  animation: map-marker-float 4.8s ease-in-out infinite;
+}
+
+#screen-map .marker-truck-b,
+#screen-map .marker-user-b,
+#screen-map .marker-alert {
+  animation-delay: -1.6s;
+}
+
+#screen-map .marker-order,
+#screen-map .marker-user-a {
+  animation-delay: -2.8s;
+}
+
+#screen-map .map-route-segment {
+  animation: map-route-glow 3.2s ease-in-out infinite;
+}
+
+#screen-map .route-b {
+  animation-delay: -1.2s;
+}
+
+#screen-map .route-c {
+  animation-delay: -2.1s;
+}
+
+#screen-map .map-current-position::before {
+  animation: map-pulse-ring 2s ease-out infinite;
+}
+
+#screen-map .map-current-position::after {
+  animation: map-pulse-ring 2s ease-out infinite;
+  animation-delay: 0.65s;
+}
+
+#screen-map .map-current-position span,
+#screen-map .map-route-dot {
+  animation: map-dot-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes map-marker-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+@keyframes map-route-glow {
+  0%,
+  100% {
+    opacity: 0.78;
+    filter: brightness(0.95);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.26);
+  }
+}
+
+@keyframes map-pulse-ring {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.78);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes map-dot-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.14);
+  }
+}

@@ -1,38 +1,249 @@
-{% extends "base.html" %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIGoRIX</title>
+  <link rel="stylesheet" href="/static/css/onboarding/base.css">
+  <link rel="stylesheet" href="/static/css/onboarding/shared.css">
+  <link rel="stylesheet" href="/static/css/onboarding/phone.css">
+  <link rel="stylesheet" href="/static/css/onboarding/sms.css">
+  <link rel="stylesheet" href="/static/css/onboarding/geo.css">
+  <link rel="stylesheet" href="/static/css/onboarding/city.css">
+  <link rel="stylesheet" href="/static/css/map/map.css">
+  <link rel="stylesheet" href="/static/css/map/map-topbar.css">
+  <link rel="stylesheet" href="/static/css/map/map-controls.css">
+  <link rel="stylesheet" href="/static/css/map/map-bottom-panel.css">
+  <link rel="stylesheet" href="/static/css/map/map-panels.css">
+  <link rel="stylesheet" href="/static/css/map/map-ai.css">
+  <link rel="stylesheet" href="/static/css/map/map-chat.css">
+  <link rel="stylesheet" href="/static/css/map/map-animations.css">
+  <script src="https://mapgl.2gis.com/api/js/v1"></script>
+</head>
+<body>
+  <main class="app">
 
-{% block title %}Клиенты - Mini CRM{% endblock %}
+    <section class="screen active" id="screen-phone">
+      <div class="brand-mark"></div>
+      <h1>MIG<span>o</span>RIX</h1>
+      <p>Движение города.<br>В режиме реального времени.</p>
 
-{% block content %}
-<h1>Клиенты</h1>
+      <div class="form">
+        <label class="phone-field">
+          <button type="button" class="country-button" id="countryButton" onclick="toggleCountryMenu()">
+            <span id="countryFlag">🇷🇺</span>
+            <span id="phoneCode">+7</span>
+          </button>
+          <input id="phoneInput" type="tel" inputmode="numeric" placeholder="968-019-24-36" maxlength="14">
+        </label>
 
-<div class="table-responsive">
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Email</th>
-            <th>Телефон</th>
-            <th>Действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for client in clients %}
-        <tr>
-            <td>{{ client.name }}</td>
-            <td>{{ client.email }}</td>
-            <td>{{ client.phone }}</td>
-            <td>
-                <a href="{{ url_for('edit_client', client_id=client.id) }}" class="btn btn-sm btn-warning">Редактировать</a>
-                <form action="{{ url_for('delete_client', client_id=client.id) }}" method="post" style="display:inline-block;">
-                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Удалить клиента?');">Удалить</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <button onclick="showScreen('screen-code')">Продолжить</button>
+
+<div class="policy-text">
+  Продолжая, вы соглашаетесь<br>
+  с <a href="/terms">Условиями</a> и <a href="/privacy">Политикой конфиденциальности</a>
 </div>
+      </div>
+    </section>
 
-<a href="{{ url_for('logout') }}" class="btn btn-secondary">Выйти</a>
+    <section class="screen" id="screen-code">
+      <div class="screen-content sms-content">
+        <div class="brand-mark sms-brand"></div>
+        <h1 class="sms-logo-title">MIG<span>o</span>RIX</h1>
 
-{% endblock %}
+        <h2>Подтверждение номера</h2>
+
+        <p class="sms-info">
+          Мы отправили SMS с кодом<br>
+          на номер <span id="smsPhoneText">+7 968-019-24-36</span>
+        </p>
+
+        <div class="code-boxes" onclick="showScreen('screen-location')">
+          <span>2</span>
+          <span>4</span>
+          <span>7</span>
+          <span>1</span>
+          <span>8</span>
+          <span>6</span>
+        </div>
+
+        <p class="sms-auto">Код будет вставлен автоматически</p>
+
+        <div class="sms-timer">
+          <span>00:28</span>
+        </div>
+
+        <button type="button" class="resend-code-btn" id="resendCodeBtn" disabled>
+          Отправить повторно через 00:28
+        </button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-location">
+      <div class="brand-mark geo-brand"></div>
+      <h1 class="geo-logo-title">MIG<span>o</span>RIX</h1>
+      <h2>Разрешите геолокацию</h2>
+      <p>Чтобы показывать услуги, технику и исполнителей рядом с вами.</p>
+
+      <div class="location-visual">⌖</div>
+
+      <button onclick="showScreen('screen-city')">Разрешить геолокацию</button>
+      <button class="secondary">Не сейчас</button>
+    </section>
+
+    <section class="screen" id="screen-city">
+      <div class="brand-mark"></div>
+      <h1>MIG<span>o</span>RIX</h1>
+      <h2>Мы определили ваш город</h2>
+
+      <div class="city-card">
+        <div class="pin">⌖</div>
+        <div>
+          <strong id="selectedCityName">Москва</strong>
+          <span id="selectedCityCountry">Россия</span>
+        </div>
+      </div>
+
+      <p>Это ваш город?</p>
+
+      <button onclick="goToMap()">Да, всё верно</button>
+      <button class="secondary city-change-button" onclick="showCityPicker()">Изменить город</button>
+
+      <div class="city-picker-backdrop" id="cityPicker" onclick="hideCityPicker()">
+        <div class="city-picker-modal" onclick="event.stopPropagation()">
+          <div class="city-picker-header">
+            <h3>Изменить город</h3>
+            <button type="button" class="city-picker-close" onclick="hideCityPicker()">×</button>
+          </div>
+          <input
+            id="citySearchInput"
+            class="city-search"
+            type="search"
+            placeholder="Введите город"
+            autocomplete="off"
+            oninput="filterCities()"
+          >
+          <div class="city-options">
+            <button type="button" class="city-option active" data-city="moscow" onclick="selectCity('moscow')">Москва</button>
+            <button type="button" class="city-option" data-city="spb" onclick="selectCity('spb')">Санкт-Петербург</button>
+            <button type="button" class="city-option" data-city="kazan" onclick="selectCity('kazan')">Казань</button>
+            <button type="button" class="city-option" data-city="ekb" onclick="selectCity('ekb')">Екатеринбург</button>
+            <button type="button" class="city-option" data-city="nsk" onclick="selectCity('nsk')">Новосибирск</button>
+          </div>
+          <button type="button" class="city-picker-submit" onclick="confirmCity()">Выбрать</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-map">
+      <div class="map-bg"></div>
+
+      <div class="map-topbar">
+        <button type="button" class="map-menu-btn" aria-label="Открыть меню" data-map-panel="menu">☰</button>
+        <div class="map-logo">MIG<span>o</span>RIX</div>
+        <button type="button" class="map-settings-btn" aria-label="Настройки" data-map-panel="settings">⚙</button>
+      </div>
+
+      <div class="map-weather-bar">
+        <span>☁</span>
+        <strong>+18°</strong>
+        <i></i>
+        <span>Москва</span>
+        <i></i>
+        <span>Облачно</span>
+      </div>
+
+      <div class="map-canvas" aria-label="Карта MIGoRIX">
+        <div id="mapgl-container"></div>
+
+        <div class="map-realtime-layer" aria-hidden="true">
+          <div class="map-route">
+            <span class="map-route-segment route-a"></span>
+            <span class="map-route-segment route-b"></span>
+            <span class="map-route-segment route-c"></span>
+            <span class="map-route-dot dot-a"></span>
+            <span class="map-route-dot dot-b"></span>
+            <span class="map-route-dot dot-c"></span>
+          </div>
+
+          <div class="map-marker marker-truck marker-truck-a">▣</div>
+          <div class="map-marker marker-truck marker-truck-b">▣</div>
+          <div class="map-marker marker-user marker-user-a">●</div>
+          <div class="map-marker marker-user marker-user-b">●</div>
+          <div class="map-marker marker-order">◈</div>
+          <div class="map-marker marker-alert">△</div>
+
+          <div class="map-current-position">
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-right-controls">
+        <button type="button" class="map-geolocation-btn" aria-label="Моё местоположение" data-map-control="geo">⌖</button>
+        <button type="button" class="map-layers-btn" aria-label="Режимы карты" data-map-control="layers">▱</button>
+      </div>
+
+      <div class="map-bottom-panel compact" data-map-panel-state="compact">
+        <button type="button" class="map-panel-handle" aria-label="Изменить высоту панели"></button>
+
+        <div class="map-panel-content">
+          <section class="map-panel-section map-panel-half" aria-label="Быстрый обзор">
+            <div class="map-quick-card">
+              <span>▣</span>
+              <strong>Техника рядом</strong>
+              <small>12 ед.</small>
+            </div>
+            <div class="map-quick-card">
+              <span>△</span>
+              <strong>События</strong>
+              <small>2 на маршруте</small>
+            </div>
+          </section>
+
+          <section class="map-panel-section map-panel-full" aria-label="Разделы карты">
+            <button type="button">Избранные места</button>
+            <button type="button">Недавние маршруты</button>
+            <button type="button">Сохранённые поиски</button>
+            <button type="button">Настройки отображения</button>
+          </section>
+        </div>
+
+        <nav class="map-bottom-nav" aria-label="Навигация карты">
+          <button type="button" class="active" data-map-tab="map"><span>⌖</span>Карта</button>
+          <button type="button" data-map-tab="orders"><span>□</span>Заказы</button>
+          <button type="button" class="map-ai-tab" data-map-tab="ai"><span>⌬</span>AI</button>
+          <button type="button" data-map-tab="chat"><span>☷</span>Сообщения</button>
+          <button type="button" data-map-tab="menu"><span>▦</span>Меню</button>
+        </nav>
+      </div>
+    </section>
+
+    <div class="country-menu" id="countryMenu">
+    <button type="button" onclick="selectCountry('RU', '🇷🇺', '+7')">🇷🇺 Россия <span>+7</span></button>
+    <button type="button" onclick="selectCountry('DE', '🇩🇪', '+49')">🇩🇪 Германия <span>+49</span></button>
+    <button type="button" onclick="selectCountry('KZ', '🇰🇿', '+7')">🇰🇿 Казахстан <span>+7</span></button>
+    <button type="button" onclick="selectCountry('US', '🇺🇸', '+1')">🇺🇸 США <span>+1</span></button>
+    <button type="button" onclick="selectCountry('AE', '🇦🇪', '+971')">🇦🇪 ОАЭ <span>+971</span></button>
+  </div>
+
+</main>
+
+  <script src="/static/js/onboarding/sms.js"></script>
+  <script src="/static/js/onboarding/shared.js"></script>
+  <script src="/static/js/onboarding/phone.js"></script>
+  <script src="/static/js/onboarding/geo.js"></script>
+  <script src="/static/js/onboarding/city.js"></script>
+  <script src="/static/js/map/map-controls.js"></script>
+  <script src="/static/js/map/map-bottom-panel.js"></script>
+  <script src="/static/js/map/map-panels.js"></script>
+  <script src="/static/js/map/map-chat.js"></script>
+  <script src="/static/js/map/map-ai.js"></script>
+  <script>
+    window.MIGORIX_CONFIG = {
+      MAPGL_API_KEY: "PASTE_2GIS_KEY_HERE"
+    };
+  </script>
+  <script src="/static/js/map/map.js"></script>
+</body>
+</html>

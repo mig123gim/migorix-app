@@ -1,0 +1,3 @@
+window.MIGoRIXMapChat = {
+  ready: true
+};

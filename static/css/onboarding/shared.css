@@ -1,0 +1,32 @@
+#screen-code .sms-brand,
+#screen-location .geo-brand {
+  width: 94px !important;
+  height: 94px !important;
+  border-width: 9px !important;
+  margin-top: 34px !important;
+  margin-bottom: 18px !important;
+}
+
+#screen-phone .brand-mark,
+#screen-code .sms-brand,
+#screen-location .geo-brand {
+  margin-top: 34px !important;
+  margin-bottom: 18px !important;
+}
+
+#screen-code .sms-logo-title,
+#screen-location .geo-logo-title {
+  font-size: 42px !important;
+  letter-spacing: 5px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+  text-align: center !important;
+  color: #ffffff !important;
+}
+
+#screen-code .sms-logo-title span,
+#screen-location .geo-logo-title span {
+  color: #39d98a !important;
+}
