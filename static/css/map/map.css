@@ -1,67 +1,4 @@
 #screen-map {
-
-/* Hide fake green route line and small green dots */
-#screen-map .map-route,
-#screen-map .map-route-segment,
-#screen-map .map-route-dot,
-#screen-map .dot-a,
-#screen-map .dot-b,
-#screen-map .dot-c {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-
-/* Hide fake route line and dots overlay */
-#screen-map .map-route,
-#screen-map .map-realtime-layer .map-route-dot {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-
-/* Hide fake overlay layers */
-#screen-map .map-realtime-layer,
-#screen-map .map-route,
-#screen-map .map-marker,
-#screen-map .map-current-position {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Hide glow/grid pseudo-elements if they draw fake grid */
-#screen-map .map-canvas::before,
-#screen-map .map-canvas::after {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-#screen-map .map-canvas {
-  background: none !important;
-  background-image: none !important;
-  background-repeat: none !important;
-  background-size: none !important;
-  background-position: none !important;
-  background-attachment: none !important;
-  background-origin: none !important;
-  background-clip: none !important;
-  background-color: transparent !important;
-  mix-blend-mode: normal !important;
-}
-
-#screen-map .map-canvas::before,
-#screen-map .map-canvas::after {
-  display: none !important;
-  opacity: 0 !important;
-  content: none !important;
-  pointer-events: none !important;
-}
-
-
   position: relative;
   width: 100%;
   height: 100dvh;
@@ -94,286 +31,60 @@
 
 #screen-map .map-bg {
   z-index: 0;
-  background:
-    radial-gradient(circle at 18% 24%, rgba(34, 197, 94, 0.12), transparent 18%),
-    radial-gradient(circle at 80% 52%, rgba(6, 182, 212, 0.08), transparent 22%),
-    linear-gradient(180deg, rgba(2, 7, 10, 0.12), rgba(2, 7, 10, 0.72));
+  pointer-events: none;
+  background: transparent;
 }
 
 #screen-map .map-canvas {
   z-index: 1;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 38%, rgba(255, 255, 255, 0.1) 0 1px, transparent 2px),
-    radial-gradient(circle at 72% 32%, rgba(34, 197, 94, 0.12) 0 1px, transparent 2px),
-    radial-gradient(circle at 58% 64%, rgba(255, 255, 255, 0.08) 0 1px, transparent 2px),
-    linear-gradient(112deg, transparent 0 18%, rgba(12, 20, 24, 0.72) 18.2% 23%, transparent 23.2%),
-    linear-gradient(26deg, transparent 0 34%, rgba(12, 20, 24, 0.62) 34.2% 38%, transparent 38.2%),
-    linear-gradient(rgba(34, 197, 94, 0.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34, 197, 94, 0.075) 1px, transparent 1px),
-    linear-gradient(24deg, transparent 0 24%, rgba(255, 255, 255, 0.052) 24.2% 25.2%, transparent 25.4%),
-    linear-gradient(138deg, transparent 0 38%, rgba(34, 197, 94, 0.105) 38.2% 39.5%, transparent 39.7%),
-    linear-gradient(74deg, transparent 0 58%, rgba(255, 255, 255, 0.045) 58.2% 59.4%, transparent 59.6%),
-    #031011;
-  background-size:
-    92px 92px,
-    118px 118px,
-    74px 74px,
-    100% 100%,
-    100% 100%,
-
-#screen-map .map-route {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-    38px 38px,
-    38px 38px,
-    100% 100%,
-    100% 100%,
-    100% 100%,
-    100% 100%;
+  background: transparent !important;
+  background-image: none !important;
+  mix-blend-mode: normal !important;
 }
 
 #mapgl-container {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
 }
 
-#screen-map .map-canvas::before,
+/* Лёгкое затемнение снизу, чтобы нижнее меню читалось */
 #screen-map .map-canvas::after {
   content: "";
   position: absolute;
-  pointer-events: none;
-}
-
-#screen-map .map-canvas::before {
-  inset: 106px 18px 124px;
-  background:
-    linear-gradient(24deg, transparent 0 16%, rgba(255, 255, 255, 0.045) 16.2% 18.5%, transparent 18.7%) 0 0 / 100% 100% no-repeat,
-    linear-gradient(146deg, transparent 0 65%, rgba(34, 197, 94, 0.055) 65.2% 67%, transparent 67.2%) 0 0 / 100% 100% no-repeat,
-    linear-gradient(90deg, rgba(34, 197, 94, 0.08), transparent 42%) 0 18% / 100% 1px no-repeat,
-    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent) 0 42% / 100% 1px no-repeat,
-    linear-gradient(90deg, rgba(34, 197, 94, 0.07), transparent 58%) 0 70% / 100% 1px no-repeat,
-    linear-gradient(180deg, rgba(34, 197, 94, 0.07), transparent 46%) 18% 0 / 1px 100% no-repeat,
-    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05), transparent) 54% 0 / 1px 100% no-repeat,
-    linear-gradient(180deg, rgba(34, 197, 94, 0.06), transparent 58%) 82% 0 / 1px 100% no-repeat;
-  opacity: 0.9;
-}
-
-#screen-map .map-canvas::after {
-  inset: auto 0 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 38%;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.54));
-}
-
-#screen-map .map-realtime-layer {
-  position: absolute;
-  inset: 104px 0 100px;
-  z-index: 5;
   pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.54));
+  z-index: 3;
 }
 
+/* Полностью скрываем все старые fake-элементы поверх карты */
+#screen-map .map-realtime-layer,
 #screen-map .map-route,
 #screen-map .map-route-segment,
 #screen-map .map-route-dot,
 #screen-map .map-marker,
-#screen-map .map-current-position {
-  position: absolute;
-}
-
-#screen-map .map-route {
-  inset: 0;
-  z-index: 2;
-}
-
-#screen-map .map-route-segment {
-  width: 8px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, transparent, rgba(34, 197, 94, 0.86), rgba(34, 197, 94, 0.68), transparent);
-  box-shadow:
-    0 0 14px rgba(34, 197, 94, 0.34),
-    0 0 36px rgba(34, 197, 94, 0.22);
-  transform-origin: center;
-}
-
-#screen-map .route-a {
-  top: 21%;
-  left: 57%;
-  height: 22%;
-  transform: rotate(41deg);
-}
-
-#screen-map .route-b {
-  top: 39%;
-  left: 49%;
-  height: 20%;
-  transform: rotate(-34deg);
-}
-
-#screen-map .route-c {
-  top: 54%;
-  left: 50%;
-  height: 26%;
-  transform: rotate(12deg);
-}
-
-#screen-map .map-route-dot {
-  width: 9px;
-  height: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.62);
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 14px rgba(34, 197, 94, 0.72);
-}
-
-#screen-map .dot-a {
-  top: 36%;
-  left: 55%;
-}
-
-#screen-map .dot-b {
-  top: 52%;
-  left: 47%;
-}
-
+#screen-map .map-current-position,
+#screen-map .dot-a,
+#screen-map .dot-b,
 #screen-map .dot-c {
-  top: 70%;
-  left: 50%;
-}
-
-#screen-map .map-marker {
-  z-index: 4;
-  display: grid;
-  place-items: center;
-  width: 39px;
-  height: 39px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  background: rgba(3, 11, 14, 0.68);
-  color: #22c55e;
-  font-size: 16px;
-  line-height: 1;
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.34),
-    0 0 24px color-mix(in srgb, currentColor 28%, transparent);
-  backdrop-filter: blur(12px);
-}
-
-#screen-map .map-marker::after {
-  content: "";
-  position: absolute;
-  inset: -7px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  opacity: 0.16;
-}
-
-#screen-map .marker-truck {
-  color: #22c55e;
-}
-
-#screen-map .marker-user {
-  color: #8b5cf6;
-}
-
-#screen-map .marker-order {
-  color: #facc15;
-  width: 43px;
-  height: 43px;
-  font-size: 18px;
-}
-
-#screen-map .marker-alert {
-  color: #ef4444;
-  width: 45px;
-  height: 45px;
-  font-size: 20px;
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.34),
-    0 0 28px rgba(239, 68, 68, 0.28);
-}
-
-#screen-map .marker-truck-a {
-  top: 22%;
-  left: 26%;
-}
-
-#screen-map .map-marker {
   display: none !important;
   opacity: 0 !important;
+  visibility: hidden !important;
   pointer-events: none !important;
 }
 
-
-#screen-map .marker-truck-b {
-  top: 28%;
-  right: 18%;
-}
-
-#screen-map .marker-user-a {
-  top: 14%;
-  left: 57%;
-}
-
-#screen-map .marker-user-b {
-  top: 58%;
-  right: 25%;
-}
-
-#screen-map .marker-order {
-  top: 53%;
-  left: 28%;
-}
-
-#screen-map .marker-alert {
-  top: 43%;
-  right: 22%;
-}
-
-#screen-map .map-current-position {
-  left: 50%;
-  bottom: 10%;
-  z-index: 5;
-  display: grid;
-  place-items: center;
-  width: 68px;
-  height: 68px;
-  border: 1px solid rgba(34, 197, 94, 0.6);
-  border-radius: 50%;
-  background: rgba(3, 16, 13, 0.64);
-  box-shadow:
-    0 0 0 16px rgba(34, 197, 94, 0.08),
-    0 0 0 36px rgba(34, 197, 94, 0.055),
-    0 0 48px rgba(34, 197, 94, 0.22),
-    0 16px 32px rgba(0, 0, 0, 0.42);
-  transform: translateX(-50%);
-  backdrop-filter: blur(10px);
-}
-
-#screen-map .map-current-position::before,
-#screen-map .map-current-position::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  border-radius: 50%;
-}
-
-#screen-map .map-current-position::before {
-  inset: -16px;
-}
-
-#screen-map .map-current-position::after {
-  inset: -32px;
-}
-
-#screen-map .map-current-position span {
-  width: 15px;
-  height: 15px;
-  border: 2px solid rgba(255, 255, 255, 0.84);
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 18px rgba(34, 197, 94, 0.86);
+/* Убираем старую декоративную сетку/свечение */
+#screen-map .map-canvas::before {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
