@@ -92,7 +92,7 @@ function goToMap() {
 
     requestAnimationFrame(() => {
       setTimeout(() => {
-        window.MIGoRIXMap?.initMapGL?.();
+        window.MIGoRIXMap?.init?.();
       }, 50);
     });
   }
