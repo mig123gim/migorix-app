@@ -26,12 +26,6 @@ function initMapBottomPanel() {
     return;
   }
 
-  if (window.MIGoRIXMapBottomPanel._initialized) {
-    console.log('MIGoRIX bottom panel already initialized');
-    return;
-  }
-
-  window.MIGoRIXMapBottomPanel._initialized = true;
 
   handle.addEventListener('click', toggleMapPanelState);
 
