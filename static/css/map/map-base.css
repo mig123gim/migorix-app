@@ -1,4 +1,57 @@
 /* map-base.css
+#screen-map {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  padding: 0;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(34, 197, 94, 0.16), transparent 31%),
+    linear-gradient(180deg, #071116 0%, #020608 100%);
+  isolation: isolate;
+  touch-action: manipulation;
+}
+
+#screen-map,
+#screen-map * {
+  box-sizing: border-box;
+}
+
+#screen-map button {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#screen-map .map-bg,
+#screen-map .map-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+#screen-map .map-bg {
+  z-index: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+#screen-map .map-canvas {
+  z-index: 1;
+  overflow: hidden;
+  background: transparent !important;
+  background-image: none !important;
+  mix-blend-mode: normal !important;
+}
+
+#mapgl-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
 
    Базовые стили и layout для карты MIGoRIX
    Включает #screen-map, .map-bg, .map-canvas, #mapgl-container
