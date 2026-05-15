@@ -18,31 +18,37 @@ function toggleMapPanelState() {
 }
 
 function initMapBottomPanel() {
-  if (window.MIGoRIXMapBottomPanel._initialized) {
-    console.log("MIGoRIX bottom panel already initialized");
+  const handle = document.querySelector('#screen-map .map-panel-handle');
+  const tabs = document.querySelectorAll('#screen-map [data-map-tab]');
+
+  if (!handle || tabs.length === 0) {
+    console.warn('MIGoRIX bottom panel init skipped: handle or tabs not found');
     return;
   }
-  window.MIGoRIXMapBottomPanel._initialized = true;
 
-  const handle = document.querySelector('#screen-map .map-panel-handle');
-  if (handle) {
-    handle.addEventListener('click', toggleMapPanelState);
+  if (window.MIGoRIXMapBottomPanel._initialized) {
+    console.log('MIGoRIX bottom panel already initialized');
+    return;
   }
 
-  document.querySelectorAll('#screen-map [data-map-tab]').forEach(function(tab) {
+  window.MIGoRIXMapBottomPanel._initialized = true;
+
+  handle.addEventListener('click', toggleMapPanelState);
+
+  tabs.forEach(function(tab) {
     tab.addEventListener('click', function() {
-    document.querySelectorAll('#screen-map [data-map-tab]').forEach(function(item) {
-      item.classList.remove('active');
-    });
-    tab.classList.add('active');
-      document.querySelectorAll('#screen-map [data-map-tab]').forEach(function(item) {
-        item.classList.toggle('active', item === tab);
+      tabs.forEach(function(item) {
+        item.classList.remove('active');
       });
+      tab.classList.add('active');
     });
   });
 
+  console.log('MIGoRIX bottom panel tabs initialized:', tabs.length);
+
   setMapPanelState('compact');
 }
+
 
 window.MIGoRIXMapBottomPanel = {
   init: initMapBottomPanel,
