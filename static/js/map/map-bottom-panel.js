@@ -37,6 +37,49 @@ function initMapBottomPanel() {
       tab.classList.add('active');
     });
   });
+  let startY = 0;
+  let currentY = 0;
+  let isDragging = false;
+
+  function onTouchStart(e) {
+    if (e.target.closest('[data-map-tab]')) return; // ignore tabs
+    startY = e.touches ? e.touches[0].clientY : e.clientY;
+    isDragging = true;
+  }
+
+  function onTouchMove(e) {
+    if (!isDragging) return;
+    currentY = e.touches ? e.touches[0].clientY : e.clientY;
+  }
+
+  function onTouchEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    const deltaY = startY - currentY;
+    const threshold = 30; // minimal swipe distance
+    if (deltaY > threshold) {
+      // swipe up
+      if (mapPanelStateIndex < mapPanelStates.length - 1) {
+        setMapPanelState(mapPanelStates[mapPanelStateIndex + 1]);
+      }
+    } else if (deltaY < -threshold) {
+      // swipe down
+      if (mapPanelStateIndex > 0) {
+        setMapPanelState(mapPanelStates[mapPanelStateIndex - 1]);
+      }
+    }
+  }
+
+  const panel = document.querySelector('#screen-map .map-bottom-panel');
+  if (panel) {
+    panel.addEventListener('touchstart', onTouchStart);
+    panel.addEventListener('touchmove', onTouchMove);
+    panel.addEventListener('touchend', onTouchEnd);
+    panel.addEventListener('mousedown', onTouchStart);
+    panel.addEventListener('mousemove', onTouchMove);
+    panel.addEventListener('mouseup', onTouchEnd);
+  }
+
 
   // console.log('MIGoRIX bottom panel tabs initialized:', tabs.length);
 
