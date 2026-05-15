@@ -1,5 +1,14 @@
 #screen-map {
 
+/* Hide fake route line and dots overlay */
+#screen-map .map-route,
+#screen-map .map-realtime-layer .map-route-dot {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
 /* Hide fake overlay layers */
 #screen-map .map-realtime-layer,
 #screen-map .map-route,
