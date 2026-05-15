@@ -301,6 +301,13 @@
   left: 26%;
 }
 
+#screen-map .map-marker {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
 #screen-map .marker-truck-b {
   top: 28%;
   right: 18%;
