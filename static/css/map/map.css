@@ -1,4 +1,23 @@
 #screen-map {
+
+/* Hide fake overlay layers */
+#screen-map .map-realtime-layer,
+#screen-map .map-route,
+#screen-map .map-marker,
+#screen-map .map-current-position {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide glow/grid pseudo-elements if they draw fake grid */
+#screen-map .map-canvas::before,
+#screen-map .map-canvas::after {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
   position: relative;
   width: 100%;
   height: 100dvh;
