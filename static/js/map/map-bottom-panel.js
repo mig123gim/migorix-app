@@ -18,6 +18,12 @@ function toggleMapPanelState() {
 }
 
 function initMapBottomPanel() {
+  if (window.MIGoRIXMapBottomPanel._initialized) {
+    console.log("MIGoRIX bottom panel already initialized");
+    return;
+  }
+  window.MIGoRIXMapBottomPanel._initialized = true;
+
   const handle = document.querySelector('#screen-map .map-panel-handle');
   if (handle) {
     handle.addEventListener('click', toggleMapPanelState);
@@ -25,6 +31,10 @@ function initMapBottomPanel() {
 
   document.querySelectorAll('#screen-map [data-map-tab]').forEach(function(tab) {
     tab.addEventListener('click', function() {
+    document.querySelectorAll('#screen-map [data-map-tab]').forEach(function(item) {
+      item.classList.remove('active');
+    });
+    tab.classList.add('active');
       document.querySelectorAll('#screen-map [data-map-tab]').forEach(function(item) {
         item.classList.toggle('active', item === tab);
       });
@@ -39,3 +49,4 @@ window.MIGoRIXMapBottomPanel = {
   setState: setMapPanelState,
   toggleState: toggleMapPanelState
 };
+console.log('MIGoRIX bottom panel tabs initialized:', document.querySelectorAll('#screen-map [data-map-tab]').length);
