@@ -22,7 +22,7 @@ function initMapBottomPanel() {
   const tabs = document.querySelectorAll('#screen-map [data-map-tab]');
 
   if (!handle || tabs.length === 0) {
-    console.warn('MIGoRIX bottom panel init skipped: handle or tabs not found');
+    // console.warn('MIGoRIX bottom panel init skipped: handle or tabs not found');
     return;
   }
 
@@ -38,7 +38,7 @@ function initMapBottomPanel() {
     });
   });
 
-  console.log('MIGoRIX bottom panel tabs initialized:', tabs.length);
+  // console.log('MIGoRIX bottom panel tabs initialized:', tabs.length);
 
   setMapPanelState('compact');
 }
