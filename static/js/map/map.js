@@ -33,7 +33,8 @@ function initMapGL() {
   migorixMapGLInstance = new window.mapgl.Map(container, {
     key: MAPGL_API_KEY,
     center: MAPGL_MOSCOW_CENTER,
-    zoom: MAPGL_DEFAULT_ZOOM
+    zoom: MAPGL_DEFAULT_ZOOM,
+    zoomControl: false
   });
 
   return true;
