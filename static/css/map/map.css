@@ -1,5 +1,18 @@
 #screen-map {
 
+/* Hide fake green route line and small green dots */
+#screen-map .map-route,
+#screen-map .map-route-segment,
+#screen-map .map-route-dot,
+#screen-map .dot-a,
+#screen-map .dot-b,
+#screen-map .dot-c {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
 /* Hide fake route line and dots overlay */
 #screen-map .map-route,
 #screen-map .map-realtime-layer .map-route-dot {
