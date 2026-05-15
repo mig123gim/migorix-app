@@ -121,6 +121,13 @@
     74px 74px,
     100% 100%,
     100% 100%,
+
+#screen-map .map-route {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
     38px 38px,
     38px 38px,
     100% 100%,
