@@ -56,6 +56,7 @@ window.MIGoRIXMap = {
   initMapGL: initMapGL
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  initMapScreen();
-});
+// Removed auto init on DOMContentLoaded to avoid map init on hidden screen
+// document.addEventListener('DOMContentLoaded', function() {
+//   initMapScreen();
+// });

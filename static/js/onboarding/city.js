@@ -89,6 +89,12 @@ function filterCities() {
 function goToMap() {
   if (window.showScreen) {
     window.showScreen('screen-map');
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        window.MIGoRIXMap?.initMapGL?.();
+      }, 50);
+    });
   }
 }
 
