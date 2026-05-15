@@ -1,5 +1,4 @@
 const MAPGL_API_KEY =
-console.log("MAPGL_API_KEY:", MAPGL_API_KEY);
   window.MIGORIX_CONFIG &&
   window.MIGORIX_CONFIG.MAPGL_API_KEY
     ? window.MIGORIX_CONFIG.MAPGL_API_KEY
