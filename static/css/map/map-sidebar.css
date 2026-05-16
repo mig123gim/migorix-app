@@ -26,7 +26,7 @@
   width: 74vw;
   max-width: 300px;
   height: 100vh;
-  background: rgba(8, 15, 26, 0.92);
+  background: rgba(8, 15, 26, 0.94);
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
@@ -36,7 +36,7 @@
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding: 16px 14px 18px;
+  padding: 14px 14px 12px;
 }
 
 .migorix-sidebar.active {
@@ -46,12 +46,14 @@
 .migorix-sidebar-header {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
+  padding: 6px 12px 4px 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   color: #d8dce6;
   font-weight: 600;
   font-size: 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 58px;
+  box-sizing: border-box;
 }
 
 
@@ -62,8 +64,8 @@
 }
 
 .migorix-sidebar-avatar {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1px solid rgba(100, 150, 255, 0.15);
   background: url('/static/img/avatar.jpg') center center / cover no-repeat;
@@ -82,6 +84,7 @@
   font-size: 15px;
   color: #e6edf3;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .migorix-sidebar-profile-info .migorix-sidebar-status {
@@ -104,11 +107,12 @@
 .migorix-sidebar-stats {
   display: flex;
   justify-content: space-between;
-  background: rgba(20, 25, 40, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
-  padding: 10px;
-  margin: 10px 0 14px;
+  padding: 8px 10px;
+  margin: 10px 0 12px;
+  max-height: 72px;
 }
 
 .migorix-sidebar-stat {
@@ -128,11 +132,11 @@
 .migorix-sidebar-stat-value {
   font-size: 14px;
   font-weight: 600;
-  color: #e6edf3;
+  color: #8b9aad;
 }
 
 .migorix-sidebar-stat-label {
-  font-size: 11px;
+  font-size: 10px;
   color: #a8b3c7;
 }
 
@@ -141,6 +145,8 @@
   overflow-y: auto;
   margin: 0;
   padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .migorix-sidebar-menu ul {
@@ -152,9 +158,9 @@
 .migorix-sidebar-item {
   display: flex;
   align-items: center;
-  height: 36px;
-  padding: 0 10px;
-  font-size: 14px;
+  height: 34px;
+  padding: 0 8px;
+  font-size: 13px;
   font-weight: 500;
   color: #e6edf3;
   background: transparent;
@@ -174,9 +180,10 @@
 }
 
 .migorix-sidebar-item.active {
-  background-color: rgba(40, 60, 90, 0.45);
+  height: 36px;
+  background-color: rgba(56, 130, 246, 0.12);
   color: #d8ecff;
-  border: 1px solid rgba(80, 150, 210, 0.18);
+  border: 1px solid rgba(77, 163, 255, 0.22);
   border-radius: 10px;
   box-shadow: none;
   position: relative;
@@ -191,12 +198,14 @@
   height: 6px;
   background-color: #4da3ff;
   border-radius: 50%;
+  box-shadow: none;
 }
 
 .migorix-sidebar-item-icon {
-  width: 15px;
-  height: 15px;
-  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  flex-shrink: 0;
   fill: #a8b3c7;
 }
 
@@ -205,9 +214,11 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   padding: 10px;
-  margin: 0 0 8px 0;
+  margin: 6px 0 0 0;
   display: flex;
   align-items: center;
+  margin-top: auto;
+  height: 86px;
 }
 
 .migorix-sidebar-info-icon {
@@ -228,15 +239,15 @@
 }
 
 .migorix-sidebar-info-content strong {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
-  color: #fff;
+  color: #e6edf3;
   margin-bottom: 4px;
 }
 
 .migorix-sidebar-info-content span {
-  font-size: 12px;
-  color: #a8b3c7;
+  font-size: 10.5px;
+  color: #8b9aad;
   line-height: 1.4;
 }
 
@@ -244,7 +255,7 @@
   height: 4px;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.08);
-  margin-top: 8px;
+  margin: 8px 0 0 0;
   overflow: hidden;
 }
 
