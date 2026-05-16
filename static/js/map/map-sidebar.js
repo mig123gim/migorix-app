@@ -14,22 +14,106 @@
 
   sidebar.innerHTML = `
     <header class="migorix-sidebar-header">
-      <h2>Меню</h2>
-      <button id="migorix-sidebar-close" class="migorix-sidebar-close" aria-label="Закрыть меню">×</button>
+      <div class="migorix-sidebar-profile">
+        <div class="migorix-sidebar-avatar"></div>
+        <div class="migorix-sidebar-profile-info">
+          <strong>Михаил</strong>
+          <span class="migorix-sidebar-status">Онлайн</span>
+        </div>
+      </div>
+      <button id="migorix-sidebar-close"
+              class="migorix-sidebar-close"
+              aria-label="Закрыть меню">×</button>
     </header>
+
     <nav class="migorix-sidebar-menu">
       <ul>
-        <li><button class="migorix-sidebar-item" data-menu-item="profile">Профиль</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="orders">История заказов</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="favorites">Избранное</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="balance">Баланс / Оплата</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="settings">Настройки</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="ai">AI помощник</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="update">Обновление приложения</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="support">Поддержка</button></li>
-        <li><button class="migorix-sidebar-item" data-menu-item="about">О проекте</button></li>
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="profile">
+            <span class="migorix-sidebar-item-icon">👤</span>
+            <span class="migorix-sidebar-item-text">Профиль</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="orders">
+            <span class="migorix-sidebar-item-icon">🕘</span>
+            <span class="migorix-sidebar-item-text">История заказов</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="favorites">
+            <span class="migorix-sidebar-item-icon">♡</span>
+            <span class="migorix-sidebar-item-text">Избранное</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="balance">
+            <span class="migorix-sidebar-item-icon">▣</span>
+            <span class="migorix-sidebar-item-text">Баланс / Оплата</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="settings">
+            <span class="migorix-sidebar-item-icon">⚙</span>
+            <span class="migorix-sidebar-item-text">Настройки</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="ai">
+            <span class="migorix-sidebar-item-icon">AI</span>
+            <span class="migorix-sidebar-item-text">AI помощник</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item active"
+                  data-menu-item="update">
+            <span class="migorix-sidebar-item-icon">⬆</span>
+            <span class="migorix-sidebar-item-text">Обновление приложения</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="support">
+            <span class="migorix-sidebar-item-icon">☎</span>
+            <span class="migorix-sidebar-item-text">Поддержка</span>
+          </button>
+        </li>
+
+        <li>
+          <button class="migorix-sidebar-item"
+                  data-menu-item="about">
+            <span class="migorix-sidebar-item-icon">ⓘ</span>
+            <span class="migorix-sidebar-item-text">О проекте</span>
+          </button>
+        </li>
       </ul>
-      <div class="migorix-sidebar-update-message" id="updateMessage" style="display:none;">Функция обновления в разработке.</div>
+
+      <div class="migorix-sidebar-update-message"
+           id="updateMessage"
+           style="display:none;">
+        Функция обновления в разработке.
+      </div>
+
+      <div class="migorix-sidebar-info-card">
+        <div class="migorix-sidebar-info-icon">⚡</div>
+        <div class="migorix-sidebar-info-content">
+          <strong>Будьте в курсе новых функций</strong>
+          <span>Мы делаем MIGoRIX лучше для вас</span>
+        </div>
+      </div>
     </nav>
   `;
 
