@@ -90,10 +90,11 @@ function goToMap() {
   if (window.showScreen) {
     window.showScreen('screen-map');
 
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        window.MIGoRIXMap?.init?.();
-        window.MIGoRIXMapBottomPanel?.init?.();
+    requestAnimationFrame(function () {
+      setTimeout(function () {
+        if (window.MIGoRIXMap) {
+          window.MIGoRIXMap.init();
+        }
       }, 50);
     });
   }
