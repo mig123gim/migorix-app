@@ -23,8 +23,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 78vw;
-  max-width: 320px;
+  width: 74vw;
+  max-width: 300px;
   height: 100vh;
   background: rgba(10, 15, 40, 0.85);
   backdrop-filter: blur(8px);
@@ -35,7 +35,7 @@
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding: calc(env(safe-area-inset-top) + 12px) 24px calc(env(safe-area-inset-bottom) + 12px) 24px;
+  padding: 16px 14px 18px;
 }
 
 .migorix-sidebar.active {
@@ -45,11 +45,11 @@
 .migorix-sidebar-header {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
+  padding: 10px 12px;
   border-bottom: 1px solid rgba(100, 110, 140, 0.4);
   color: #cfd8dc;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -59,18 +59,18 @@
 }
 
 .migorix-sidebar-avatar {
-  width: 56px;
-  height: 56px;
-  margin-right: 18px;
+  width: 42px;
+  height: 42px;
+  margin-right: 12px;
   border-radius: 50%;
   background: linear-gradient(135deg, #4a90e2, #9013fe);
   flex-shrink: 0;
 }
 
 .migorix-sidebar-status {
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   color: #4caf50;
-  margin-left: 12px;
+  margin-left: 0;
 }
 
 .migorix-sidebar-close {
@@ -105,17 +105,18 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 10px 12px;
+  padding: 0 10px;
+  height: 40px;
   font-size: 0.9rem;
+  font-weight: 500;
   color: #cfd8dc;
-  background: rgba(20, 25, 40, 0.7);
-  border-radius: 6px;
+  background: transparent;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .migorix-sidebar-item + .migorix-sidebar-item {
-  margin-top: 8px;
+  margin-top: 2px;
 }
 
 .migorix-sidebar-item:hover,
@@ -125,14 +126,15 @@
 }
 
 .migorix-sidebar-item.active {
-  background-color: rgba(70, 110, 160, 0.3);
-  color: #90caf9;
+  background-color: rgba(36, 58, 84, 0.45);
+  color: #d8ecff;
+  border: 1px solid rgba(80,150,210,.18);
 }
 
 .migorix-sidebar-item-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
   fill: #90caf9;
   flex-shrink: 0;
 }
@@ -143,16 +145,16 @@
   color: #90caf9;
   background: rgba(20, 25, 40, 0.8);
   border-radius: 6px;
-  margin-top: 16px;
+  margin-top: 8px;
   text-align: center;
 }
 
 .migorix-sidebar-info-card {
   padding: 10px 12px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #90a4ae;
   background: rgba(20, 25, 40, 0.6);
   border-radius: 6px;
-  margin: 12px 16px;
+  margin: 10px 0 8px;
   text-align: center;
 }
