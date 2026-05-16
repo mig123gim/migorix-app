@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   background: rgba(8, 10, 25, 0.7);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
   z-index: 1050;
   opacity: 0;
   pointer-events: none;
@@ -23,8 +23,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 72vw;
-  max-width: 300px;
+  width: 78vw;
+  max-width: 320px;
   height: 100vh;
   background: rgba(10, 15, 40, 0.85);
   backdrop-filter: blur(8px);
@@ -35,7 +35,7 @@
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom) 16px;
+  padding: calc(env(safe-area-inset-top) + 12px) 24px calc(env(safe-area-inset-bottom) + 12px) 24px;
 }
 
 .migorix-sidebar.active {
@@ -59,8 +59,9 @@
 }
 
 .migorix-sidebar-avatar {
-  width: 36px;
-  height: 36px;
+  width: 56px;
+  height: 56px;
+  margin-right: 18px;
   border-radius: 50%;
   background: linear-gradient(135deg, #4a90e2, #9013fe);
   flex-shrink: 0;
