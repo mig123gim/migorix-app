@@ -1,0 +1,6 @@
+{
+  "appId": "com.migorix.app",
+  "appName": "MIGoRIX",
+  "webDir": "./",
+  "bundledWebRuntime": false
+}

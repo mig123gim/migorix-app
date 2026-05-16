@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MIGoRIX</string>
+    <string name="title_activity_main">MIGoRIX</string>
+    <string name="package_name">com.migorix.app</string>
+    <string name="custom_url_scheme">com.migorix.app</string>
+</resources>

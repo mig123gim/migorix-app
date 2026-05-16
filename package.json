@@ -1,0 +1,22 @@
+{
+  "name": "migorix-app",
+  "version": "0.1.0",
+  "description": "MIGoRIX Android wrapper using Capacitor",
+  "main": "index.js",
+  "scripts": {
+    "start": "capacitor serve",
+    "build": "capacitor build android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
+    "@capacitor/cli": "^5.0.0"
+  },
+  "devDependencies": {},
+  "capacitor": {
+    "appId": "com.migorix.app",
+    "appName": "MIGoRIX",
+    "webDir": "./",
+    "bundledWebRuntime": false
+  }
+}

@@ -10,3 +10,4 @@ static/css/map/*before*.css
 
 static/js/onboarding/*before*.js
 static/js/map/*before*.js
+node_modules/
