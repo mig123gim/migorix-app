@@ -132,20 +132,6 @@
   opacity: 0.6;
 }
 
-.migorix-tab-button {
-  font-size: 22px;
-  opacity: 0.4;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.migorix-tab-button.active {
-  opacity: 1;
-  background-color: rgba(77, 163, 255, 0.08);
-  border-radius: 12px;
-}
 
 
