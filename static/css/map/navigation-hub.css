@@ -30,12 +30,15 @@
   inset: 0;
   display: flex;
   flex-direction: row;
-  gap: 14px;
+  gap: 0;
   align-items: stretch;
   justify-content: flex-start;
   z-index: 1052;
-  padding: 20px 16px;
+  padding: 0;
   box-sizing: border-box;
+  border-radius: 0;
+  border: none;
+  background-color: rgba(8, 15, 26, 0.92);
 }
 
 .migorix-tab-rail {
@@ -43,9 +46,9 @@
   flex: 0 0 54px;
   min-height: 0;
   height: auto;
-  border-radius: 18px;
-  background: rgba(8, 15, 26, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0 22px 22px 0;
+  background: rgba(8, 15, 26, 0.92);
+  border: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,12 +77,13 @@
 }
 
 .migorix-hub-content {
-  width: min(74vw, 420px);
-  max-width: 420px;
+  flex: 1 1 auto;
+  width: auto;
+  max-width: none;
   min-height: 0;
-  border-radius: 22px;
-  background: rgba(8, 15, 26, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  background: rgba(8, 15, 26, 0.92);
+  border: none;
   padding: 1.5rem 1.25rem;
   overflow-y: auto;
   box-shadow: none;
@@ -129,17 +133,18 @@
 }
 
 .migorix-tab-button {
-  font-size: 24px;
-  line-height: 1;
-  opacity: 0.3;
-  text-align: center;
-  user-select: none;
-  cursor: default;
+  font-size: 22px;
+  opacity: 0.4;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .migorix-tab-button.active {
   opacity: 1;
-  background-color: rgba(77, 163, 255, 0.12);
+  background-color: rgba(77, 163, 255, 0.08);
   border-radius: 12px;
 }
 
