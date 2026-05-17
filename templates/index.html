@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="/static/css/map/map-chat.css">
   <link rel="stylesheet" href="/static/css/map/map-animations.css">
   <link rel="stylesheet" href="/static/css/map/map-sidebar.css">
+  <link rel="stylesheet" href="/static/css/map/navigation-hub.css">
 
   <script src="https://mapgl.2gis.com/api/js/v1"></script>
 </head>
@@ -239,8 +240,28 @@
 
 </main>
 
+  <!-- MIGoRIX Fullscreen Navigation Hub Skeleton -->
+  <div class="migorix-hub" aria-hidden="true">
+    <div class="migorix-hub-overlay"></div>
+    <div class="migorix-hub-container">
+      <button type="button" class="migorix-hub-close" aria-label="Закрыть навигацию">×</button>
+      <nav class="migorix-hub-dock" aria-label="Навигация">
+        <ul class="migorix-hub-nav">
+          <li class="migorix-hub-nav-item">Пункт 1</li>
+          <li class="migorix-hub-nav-item">Пункт 2</li>
+          <li class="migorix-hub-nav-item">Пункт 3</li>
+        </ul>
+      </nav>
+      <section class="migorix-hub-module migorix-hub-ai" aria-label="AI Модуль">
+        <!-- AI module placeholder -->
+      </section>
+    </div>
+  </div>
+  <!-- End MIGoRIX Fullscreen Navigation Hub Skeleton -->
+
   <script src="/static/js/onboarding/sms.js"></script>
   <script src="/static/js/onboarding/shared.js"></script>
+
   <script src="/static/js/onboarding/phone.js"></script>
   <script src="/static/js/onboarding/geo.js"></script>
   <script src="/static/js/onboarding/city.js"></script>
@@ -250,7 +271,8 @@
   <script src="/static/js/map/map-chat.js"></script>
   <script src="/static/js/map/map-ai.js"></script>
   <script src="/static/js/map/map.js"></script>
-<script src="/static/js/map/map-sidebar.js"></script>
+  <script src="/static/js/map/map-sidebar.js"></script>
+  <script src="/static/js/map/navigation-hub.js"></script>
 </body>
 </html>
 
