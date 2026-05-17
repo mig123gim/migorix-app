@@ -25,7 +25,7 @@
   z-index: 1051;
 }
 
-.migorix-hub-container {
+.migorix-hub-surface {
   position: fixed;
   inset: 0;
   display: flex;
@@ -38,7 +38,7 @@
   box-sizing: border-box;
 }
 
-.migorix-hub-dock {
+.migorix-tab-rail {
   width: 54px;
   flex: 0 0 54px;
   min-height: 0;
@@ -53,7 +53,7 @@
   box-shadow: none;
 }
 
-.migorix-hub-nav-item {
+.migorix-tab-button {
   font-size: 22px;
   line-height: 1;
   opacity: 0.4;
@@ -67,13 +67,13 @@
   justify-content: center;
 }
 
-.migorix-hub-nav-item.active {
+.migorix-tab-button.active {
   opacity: 1;
   background-color: rgba(77, 163, 255, 0.08);
   border-radius: 12px;
 }
 
-.migorix-hub-module {
+.migorix-hub-content {
   width: min(74vw, 420px);
   max-width: 420px;
   min-height: 0;
@@ -91,7 +91,7 @@
   line-height: 1.5;
 }
 
-.migorix-hub-module > .system-label {
+.migorix-hub-content > .system-label {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -101,7 +101,7 @@
   opacity: 0.7;
 }
 
-.migorix-hub-module > .ai-title {
+.migorix-hub-content > .ai-title {
   font-size: 16px;
   font-weight: 600;
   color: #e6edf3;
@@ -109,26 +109,26 @@
   opacity: 0.85;
 }
 
-.migorix-hub-module > .context-text {
+.migorix-hub-content > .context-text {
   font-size: 14px;
   color: #8b9aad;
   margin-bottom: 6px;
   opacity: 0.7;
 }
 
-.migorix-hub-module > .divider {
+.migorix-hub-content > .divider {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   margin-bottom: 6px;
 }
 
-.migorix-hub-module > .ambient-line {
+.migorix-hub-content > .ambient-line {
   font-size: 12px;
   color: #8b9aad;
   margin-bottom: 4px;
   opacity: 0.6;
 }
 
-.migorix-hub-nav-item {
+.migorix-tab-button {
   font-size: 24px;
   line-height: 1;
   opacity: 0.3;
@@ -137,7 +137,7 @@
   cursor: default;
 }
 
-.migorix-hub-nav-item.active {
+.migorix-tab-button.active {
   opacity: 1;
   background-color: rgba(77, 163, 255, 0.12);
   border-radius: 12px;
