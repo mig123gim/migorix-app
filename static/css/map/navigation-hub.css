@@ -18,6 +18,10 @@
   pointer-events: auto;
 }
 
+.migorix-hub-close {
+  display: none;
+}
+
 .migorix-hub-overlay {
   position: fixed;
   inset: 0;
@@ -42,8 +46,8 @@
 }
 
 .migorix-tab-rail {
-  width: 54px;
-  flex: 0 0 54px;
+  width: 72px;
+  flex: 0 0 72px;
   min-height: 0;
   height: auto;
   border-radius: 0 22px 22px 0;
@@ -59,15 +63,16 @@
 .migorix-tab-button {
   font-size: 22px;
   line-height: 1;
-  opacity: 0.4;
+  opacity: 0.8;
   text-align: center;
   user-select: none;
-  cursor: default;
-  width: 22px;
-  height: 22px;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 12px;
 }
 
 .migorix-tab-button.active {
@@ -84,7 +89,7 @@
   border-radius: 0;
   background: rgba(8, 15, 26, 0.92);
   border: none;
-  padding: 1.5rem 1.25rem;
+  padding: 1.5rem;
   overflow-y: auto;
   box-shadow: none;
   display: flex;
